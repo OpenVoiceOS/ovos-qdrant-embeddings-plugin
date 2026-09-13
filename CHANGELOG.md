@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.1a9](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/tree/0.0.1a9) (2026-09-13)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/compare/0.0.1a8...0.0.1a9)
+
+**Merged pull requests:**
+
+- fix: cap httpx below 1.0 until qdrant-client supports it [\#10](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/pull/10) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.0.1a8](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/tree/0.0.1a8) (2026-07-31)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/compare/0.0.1a7...0.0.1a8)
