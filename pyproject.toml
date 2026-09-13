@@ -15,6 +15,10 @@ dependencies = [
     "ovos-plugin-manager>=2.1.0,<3.0.0",
     "numpy",
     "qdrant-client",
+    # qdrant-client 1.19.0 imports httpx.AsyncClient, which httpx 1.0 removed.
+    # Remove this cap when a qdrant-client release supports httpx 1.0.
+    # Related upstream work: https://github.com/qdrant/qdrant-client/issues/1403
+    "httpx<1.0",
 ]
 
 [project.optional-dependencies]
