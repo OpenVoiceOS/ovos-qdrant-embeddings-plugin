@@ -84,6 +84,17 @@ class QdrantEmbeddingsDB(EmbeddingsDB):
         else:
             raise ValueError(f"Unsupported distance metric: {metric_str}. Choose from 'cosine', 'euclidean', 'dot'.")
 
+    def _to_distance(self, score: float) -> float:
+        """Turn a Qdrant score into the distance the EmbeddingsDB contract returns (lower is closer).
+
+        Qdrant scores cosine and dot products as similarities and euclidean as a distance.
+        """
+        if self.distance_metric == Distance.COSINE:
+            return 1.0 - score
+        if self.distance_metric == Distance.DOT:
+            return -score
+        return score
+
     def _get_collection_instance(self, collection_name: Optional[str]) -> CollectionInfo:
         """
         Helper method to get the Qdrant collection info.
@@ -429,7 +440,7 @@ class QdrantEmbeddingsDB(EmbeddingsDB):
                     # If original_key is not found, use the Qdrant internal ID as a fallback
                     original_key = str(scored_point.id)
 
-                distance = scored_point.score  # Qdrant returns score, which is typically distance or similarity
+                distance = self._to_distance(scored_point.score)
 
                 # Prepare metadata to return, excluding the internal original_key
                 metadata = scored_point.payload or {}

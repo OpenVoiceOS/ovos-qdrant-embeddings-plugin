@@ -42,9 +42,9 @@ db.add_embeddings("apple",  np.array([1.0, 0.0, 0.0, 0.0]))
 db.add_embeddings("banana", np.array([0.0, 1.0, 0.0, 0.0]))
 db.add_embeddings("cherry", np.array([0.0, 0.0, 1.0, 0.0]))
 
-# Nearest-neighbour query, returns [(key, score), ...]
+# Nearest-neighbour query, returns [(key, distance), ...], nearest first
 results = db.query(np.array([0.9, 0.1, 0.0, 0.0]), top_k=2)
-print(results)  # [('apple', 0.9938...), ('banana', 0.1104...)]
+print(results)  # [('apple', 0.0061...), ('banana', 0.8895...)]
 ```
 
 ## Configuration

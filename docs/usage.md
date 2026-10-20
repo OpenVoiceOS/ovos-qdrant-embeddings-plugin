@@ -82,19 +82,19 @@ for key, emb, meta in results:
 ```python
 query_vec = np.array([0.9, 0.1, 0.0, 0.0])
 
-# Returns list of (key, score)
+# Returns list of (key, distance)
 hits = db.query(query_vec, top_k=5)
 
-# With metadata, returns list of (key, score, metadata)
+# With metadata, returns list of (key, distance, metadata)
 hits = db.query(query_vec, top_k=5, return_metadata=True)
-for key, score, meta in hits:
-    print(f"{key}: {score:.4f}  {meta}")
+for key, distance, meta in hits:
+    print(f"{key}: {distance:.4f}  {meta}")
 ```
 
-Score semantics depend on `distance_metric`:
-- **cosine**: higher is more similar (range −1 … 1, typically 0 … 1 for non-negative vectors).
-- **euclidean**: lower is closer.
-- **dot**: higher is more similar.
+`query` returns a distance, as every `EmbeddingsDB` plugin does: lower is closer, and the nearest hit comes first. The value depends on `distance_metric`:
+- **cosine**: `1 - cosine similarity`, from 0 (same direction) to 2 (opposite).
+- **euclidean**: the euclidean distance.
+- **dot**: the negated dot product.
 
 ## Deleting vectors
 

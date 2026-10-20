@@ -40,9 +40,9 @@ def test_e2e_add_query_nearest(db):
     results = db.query(query_vec, top_k=2, return_metadata=True)
 
     assert len(results) == 2
-    top_key, top_score, top_meta = results[0]
+    top_key, top_distance, top_meta = results[0]
     assert top_key == "hello world"
-    assert top_score > 0.99, f"Expected near-perfect cosine match, got {top_score}"
+    assert top_distance < 0.01, f"Expected near-zero cosine distance, got {top_distance}"
     assert top_meta.get("text") == "hello world"
     assert "original_key" not in top_meta
 

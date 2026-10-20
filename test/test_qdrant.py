@@ -185,3 +185,20 @@ def test_delete_embeddings_batch(db):
     assert db.get_embeddings("db2") is None
     # db3 should still exist
     assert db.get_embeddings("db3") is not None
+
+
+# ── distance contract ─────────────────────────────────────────────────────────
+# EmbeddingsDB.query returns a distance: lower is closer, whatever the metric.
+
+@pytest.mark.parametrize("metric, expected", [
+    ("cosine", [0.0, 1.0]),        # 1 - cosine similarity
+    ("euclidean", [0.0, 2 ** 0.5]),
+    ("dot", [-1.0, 0.0]),          # negated dot product
+])
+def test_query_returns_distances_nearest_first(metric, expected):
+    db = QdrantEmbeddingsDB(config={"vector_size": VECTOR_SIZE, "distance_metric": metric})
+    db.add_embeddings("same", vec(1, 0, 0, 0))
+    db.add_embeddings("orthogonal", vec(0, 1, 0, 0))
+    results = db.query(vec(1, 0, 0, 0), top_k=2)
+    assert [key for key, _ in results] == ["same", "orthogonal"]
+    assert [dist for _, dist in results] == pytest.approx(expected, abs=1e-5)

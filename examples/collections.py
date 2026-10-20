@@ -29,12 +29,12 @@ print("Memories count:",   db.count_embeddings_in_collection("memories"))
 query = np.array([0.9, 0.1, 0.4, 0.0])
 
 print("\nTop utterance match:")
-for key, score in db.query(query, top_k=1, collection_name="utterances"):
-    print(f"  {key}  score={score:.4f}")
+for key, distance in db.query(query, top_k=1, collection_name="utterances"):
+    print(f"  {key}  distance={distance:.4f}")
 
 print("\nTop memory match:")
-for key, score in db.query(query, top_k=1, collection_name="memories"):
-    print(f"  {key}  score={score:.4f}")
+for key, distance in db.query(query, top_k=1, collection_name="memories"):
+    print(f"  {key}  distance={distance:.4f}")
 
 # Batch add to utterances
 db.add_embeddings_batch(

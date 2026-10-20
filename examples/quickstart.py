@@ -23,8 +23,8 @@ query = np.array([1.0, 0.1, 0.0, 0.0])
 results = db.query(query, top_k=3, return_metadata=True)
 
 print("\nNearest neighbours:")
-for key, score, meta in results:
-    print(f"  {key:8s}  score={score:.4f}  {meta}")
+for key, distance, meta in results:
+    print(f"  {key:8s}  distance={distance:.4f}  {meta}")
 
 # Retrieve a specific vector
 emb = db.get_embeddings("apple")
