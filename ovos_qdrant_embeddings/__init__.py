@@ -18,6 +18,10 @@ from qdrant_client.models import (
 )
 
 
+# Point IDs derive from the key, so adding a key again upserts over its point.
+POINT_ID_NAMESPACE = uuid.UUID("7f0a3c4e-2b1d-5e8f-9a6b-3c2d1e0f4a5b")
+
+
 class QdrantEmbeddingsDB(EmbeddingsDB):
     """An implementation of EmbeddingsDB using Qdrant for managing embeddings."""
 
@@ -190,8 +194,7 @@ class QdrantEmbeddingsDB(EmbeddingsDB):
         # Store the original key in the payload
         payload["original_key"] = key
 
-        # Generate a UUID for the Qdrant point ID
-        point_id = str(uuid.uuid4())
+        point_id = str(uuid.uuid5(POINT_ID_NAMESPACE, key))
 
         # Use PointStruct for upserting a single point
         point = PointStruct(id=point_id, vector=embedding_list, payload=payload)
@@ -223,9 +226,7 @@ class QdrantEmbeddingsDB(EmbeddingsDB):
             payload = metadata[i] if metadata and metadata[i] is not None else {}
             # Store the original key in the payload
             payload["original_key"] = key
-            # Generate a UUID for the Qdrant point ID
-            point_id = str(uuid.uuid4())
-            points.append(PointStruct(id=point_id, vector=embedding_list, payload=payload))
+            points.append(PointStruct(id=str(uuid.uuid5(POINT_ID_NAMESPACE, key)), vector=embedding_list, payload=payload))
 
         self.client.upsert(
             collection_name=name,
