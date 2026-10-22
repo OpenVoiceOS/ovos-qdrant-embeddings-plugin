@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.0.1a11](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/tree/0.0.1a11) (2026-10-22)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/compare/0.0.1a10...0.0.1a11)
+
+**Merged pull requests:**
+
+- fix: adding a key again replaces its embedding [\#13](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/pull/13) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(deps\): accept ovos-plugin-manager 3 [\#12](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/pull/12) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.0.1a10](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/tree/0.0.1a10) (2026-09-18)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/compare/0.0.1a9...0.0.1a10)
