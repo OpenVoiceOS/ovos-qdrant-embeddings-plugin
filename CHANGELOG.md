@@ -1,8 +1,8 @@
 # Changelog
 
-## [0.0.1a11](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/tree/0.0.1a11) (2026-10-22)
+## [0.0.1a12](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/tree/0.0.1a12) (2026-10-22)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/compare/0.0.1a10...0.0.1a11)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/compare/0.0.1a10...0.0.1a12)
 
 **Merged pull requests:**
 
