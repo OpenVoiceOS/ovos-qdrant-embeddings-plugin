@@ -185,3 +185,43 @@ def test_delete_embeddings_batch(db):
     assert db.get_embeddings("db2") is None
     # db3 should still exist
     assert db.get_embeddings("db3") is not None
+
+
+# ── re-adding a key ───────────────────────────────────────────────────────────
+
+# The cosine metric stores unit vectors. (3, 4, 0, 0) has norm 5, so the stored
+# vector is (0.6, 0.8, 0, 0).
+V1 = vec(0, 0, 1, 0)
+V2 = vec(3, 4, 0, 0)
+V2_STORED = np.array([0.6, 0.8, 0.0, 0.0])
+
+
+def test_add_embeddings_same_key_replaces(db):
+    db.add_embeddings("a", V1)
+    db.add_embeddings("a", V2)
+    assert db.count_embeddings_in_collection() == 1
+    np.testing.assert_allclose(db.get_embeddings("a"), V2_STORED, atol=1e-6)
+    assert [key for key, _ in db.query(V2, top_k=5)] == ["a"]
+
+
+def test_add_embeddings_batch_same_key_replaces(db):
+    db.add_embeddings_batch(["a", "b"], [V1, V1])
+    db.add_embeddings_batch(["a"], [V2])
+    assert db.count_embeddings_in_collection() == 2
+    np.testing.assert_allclose(db.get_embeddings("a"), V2_STORED, atol=1e-6)
+    np.testing.assert_allclose(db.get_embeddings("b"), V1, atol=1e-6)
+
+
+def test_add_embeddings_then_batch_same_key_replaces(db):
+    db.add_embeddings("a", V1)
+    db.add_embeddings_batch(["a"], [V2])
+    assert db.count_embeddings_in_collection() == 1
+    np.testing.assert_allclose(db.get_embeddings("a"), V2_STORED, atol=1e-6)
+
+
+def test_same_key_in_two_collections_is_kept_apart(db):
+    db.create_collection("other")
+    db.add_embeddings("a", V1)
+    db.add_embeddings("a", V2, collection_name="other")
+    np.testing.assert_allclose(db.get_embeddings("a"), V1, atol=1e-6)
+    np.testing.assert_allclose(db.get_embeddings("a", collection_name="other"), V2_STORED, atol=1e-6)
