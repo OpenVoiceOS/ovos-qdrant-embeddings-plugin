@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.1a14](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/tree/0.0.1a14) (2026-11-03)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/compare/0.0.1a13...0.0.1a14)
+
+**Merged pull requests:**
+
+- fix\(ci\): run the conventional-label action directly [\#15](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/pull/15) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.0.1a13](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/tree/0.0.1a13) (2026-11-03)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/compare/0.0.1a12...0.0.1a13)
