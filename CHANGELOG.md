@@ -1,8 +1,20 @@
 # Changelog
 
+## [0.0.1a13](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/tree/0.0.1a13) (2026-11-03)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/compare/0.0.1a12...0.0.1a13)
+
+**Merged pull requests:**
+
+- fix\(ci\): pass only declared inputs to publish-stable [\#14](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/pull/14) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.0.1a12](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/tree/0.0.1a12) (2026-10-22)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/compare/0.0.1a10...0.0.1a12)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/compare/0.0.1a11...0.0.1a12)
+
+## [0.0.1a11](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/tree/0.0.1a11) (2026-10-22)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-qdrant-embeddings-plugin/compare/0.0.1a10...0.0.1a11)
 
 **Merged pull requests:**
 
